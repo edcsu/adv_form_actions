@@ -1,4 +1,11 @@
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
+  function handleUpVote() {
+    
+  }
+  
+  function handleDownVote() {
+    
+  }
   return (
     <article>
       <header>
@@ -7,7 +14,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button>
+        <button formAction={handleUpVote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -27,7 +34,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
         <span>{votes}</span>
 
-        <button>
+        <button formAction={handleDownVote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
