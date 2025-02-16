@@ -1,8 +1,11 @@
-import { useActionState } from 'react'  
-export function NewOpinion() {
+import { useActionState, use } from 'react'  
+import {OpinionsContext} from '../store/opinions-context'
 
-  function handleNewOpinion(prevState, formData) {
-    const userName = formData.get('username')
+export function NewOpinion() {
+  const { addOpinion} = use(OpinionsContext)
+
+  async function handleNewOpinion(prevState, formData) {
+    const userName = formData.get('userName')
     const title = formData.get('title')
     const body = formData.get('body')
 
@@ -17,7 +20,7 @@ export function NewOpinion() {
     }
 
     if (!userName?.trim()) {
-      errors.push('Please provise your name')
+      errors.push('Please provide your name')
     }
 
     if (errors.length > 0) {
@@ -29,6 +32,7 @@ export function NewOpinion() {
       }
     }
     
+    await addOpinion({ title, body, userName})
     return {errors: null}
   }
 
